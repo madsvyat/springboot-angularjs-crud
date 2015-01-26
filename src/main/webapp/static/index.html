@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<h2 >MyUser</h2>
+
+<button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#saveUserModal" ng-click="clear()">
+    <span class="glyphicon glyphicon-flash"></span> <span>Create a new User</span>
+</button>
+<div class="modal fade" id="saveMyUserModal" tabindex="-1" role="dialog" aria-labelledby="myMyUserLabel"
+     aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form name="form" role="form" novalidate
+                  class="ng-scope ng-invalid ng-invalid-required ng-dirty ng-valid-minlength"
+                  ng-submit="create()">
+
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                            ng-click="clear()">&times;</button>
+                    <h4 class="modal-title" id="myMyUserLabel" translate="jhipstercrudApp.myUser.home.createOrEditLabel">Create or edit a MyUser</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label>ID</label>
+                        <input type="text" class="form-control" name="id"
+                               ng-model="myUser.id" readonly>
+                    </div>
+
+                    <div class="form-group">
+                        <label translate="jhipstercrudApp.myUser.name">Name</label>
+                        <input type="text" class="form-control"
+                               ng-model="myUser.name">
+                    </div>
+                    <div class="form-group">
+                        <label translate="jhipstercrudApp.myUser.age">Age</label>
+                        <input type="number" class="form-control"
+                               ng-model="myUser.age">
+                    </div>
+                    <div class="form-group">
+                        <label translate="jhipstercrudApp.myUser.isAdmin">IsAdmin</label>
+                        <input type="checkbox" class="form-control"
+                               ng-model="myUser.isAdmin">
+                    </div>
+                    <div class="form-group">
+                        <label translate="jhipstercrudApp.myUser.createdDate">CreatedDate</label>
+                        <input type="datetime-local" class="form-control"
+                               ng-model="myUser.createdDate" ng-model-options="{timezone: 'UTC'}">
+                    </div>
+
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="clear()">
+                        <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span translate="entity.action.cancel">Cancel</span>
+                    </button>
+                    <button type="submit" ng-disabled="form.$invalid" class="btn btn-primary">
+                        <span class="glyphicon glyphicon-save"></span>&nbsp;<span translate="entity.action.save">Save</span>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="deleteMyUserConfirmation">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form name="form" ng-submit="confirmDelete(myUser.id)">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                            ng-click="clear()">&times;</button>
+                    <h4 class="modal-title" translate="entity.delete.title">Confirm delete operation</h4>
+                </div>
+                <div class="modal-body">
+                    <p translate="jhipstercrudApp.myUser.delete.question" translate-values="{id: '{{myUser.id}}'}">Are you sure you want to delete MyUser {{myUser.id}}?</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="clear()">
+                        <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span translate="entity.action.cancel">Cancel</span>
+                    </button>
+                    <button type="submit" ng-disabled="form.$invalid" class="btn btn-danger">
+                        <span class="glyphicon glyphicon-remove-circle"></span>&nbsp;<span translate="entity.action.delete">Delete</span>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="table-responsive">
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th translate="jhipstercrudApp.myUser.name">Name</th>
+            <th translate="jhipstercrudApp.myUser.age">Age</th>
+            <th translate="jhipstercrudApp.myUser.isAdmin">IsAdmin</th>
+            <th translate="jhipstercrudApp.myUser.createdDate">CreatedDate</th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="User in Users">
+            <td><a ui-sref="myUserDetails({id:User.id})">{{User.id}}</a></td>
+            <td>{{User.name}}</td>
+            <td>{{User.age}}</td>
+            <td>{{User.isAdmin}}</td>
+            <td>{{User.createdDate}}</td>
+            <td>
+                <button type="submit"
+                        ui-sref="myUserDetail({id:myUser.id})"
+                        class="btn btn-info">
+                    <span class="glyphicon glyphicon-eye-open"></span>&nbsp;<span translate="entity.action.view"> View</span>
+                </button>
+                <button type="submit"
+                        ng-click="update(myUser.id)"
+                        class="btn btn-primary">
+                    <span class="glyphicon glyphicon-pencil"></span>&nbsp;<span translate="entity.action.edit"> Edit</span>
+                </button>
+                <button type="submit"
+                        ng-click="delete(myUser.id)"
+                        class="btn btn-danger">
+                    <span class="glyphicon glyphicon-remove-circle"></span>&nbsp;<span translate="entity.action.delete"> Delete</span>
+                </button>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+</body>
+</html>
