@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Date;
+import java.util.List;
 
 /**
  * Created by Infiltrator on 27.01.2015.
@@ -16,6 +17,11 @@ public class UserController {
     
     @Autowired
     private UserRepository userRepository;
+    
+    @RequestMapping(method = RequestMethod.GET)
+    public List getUsers() {
+        return userRepository.findAll();
+    }
     
     @RequestMapping(method = RequestMethod.POST)
     public User createUser(@RequestBody User user) {
@@ -34,7 +40,7 @@ public class UserController {
         userRepository.delete(id);        
     }
     
-    @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
+    @RequestMapping(value = "/{id}", method = RequestMethod.POST)
     public User updateUser(@RequestBody User updatedUser, @PathVariable Long id) {
         updatedUser.setId(id);
         return userRepository.save(updatedUser);

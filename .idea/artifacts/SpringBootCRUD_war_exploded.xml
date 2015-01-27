@@ -99,7 +99,7 @@
         </element>
       </element>
       <element id="directory" name="META-INF">
-        <element id="file-copy" path="D:\IDEA Projects\SpringBootCRUD\target/MANIFEST.MF" />
+        <element id="file-copy" path="E:\Idea\springboot-angularjs-crud\target/MANIFEST.MF" />
       </element>
       <element id="javaee-facet-resources" facet="SpringBootCRUD/web/Web" />
     </root>

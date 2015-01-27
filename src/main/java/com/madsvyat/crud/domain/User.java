@@ -4,9 +4,6 @@ import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
 
-/**
- * Created by Infiltrator on 26.01.2015.
- */
 @Entity
 //@Indexed
 @Table(name = "User")
